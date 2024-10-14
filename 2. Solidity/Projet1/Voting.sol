@@ -134,7 +134,7 @@ contract Voting is Ownable{
         emit Voted(msg.sender, _proposalId);
     }
 
-    // ----------- Voting details functions -----------
+    // ----------- Tally details functions -----------
 
     function tallyVotes() external 
     onlyOwner 
@@ -153,6 +153,9 @@ contract Voting is Ownable{
         emit WorkflowStatusChange(WorkflowStatus.VotingSessionEnded, WorkflowStatus.VotesTallied);
     }
 
+
+    // ----------- Session Results functions -----------
+    
     function getVoterChoice(address _address) external view onlyWhitelisted returns(uint){
         require(voters[_address].hasVoted, "Address has not voted yet");
         return voters[_address].votedProposalId;
